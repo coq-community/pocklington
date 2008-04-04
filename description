@@ -1,0 +1,11 @@
+Name: Pocklington
+Title: Pocklington's criterion
+Author: Olga Caprotti
+Institution: Eindhoven University of Technology
+Author: Martijn Oostdijk
+Institution: Eindhoven University of Technology
+Date: November 2000
+Description: Pocklington's criterion for checking primality for
+             large natural numbers. Includes a proof of Fermat's
+             little theorem.
+Keywords: pocklington prime primality fermat little theorem
