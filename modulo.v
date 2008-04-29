@@ -15,12 +15,12 @@
 
 
 (**
- * modulo
- * Modulo Arithmetic.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   modulo
+   Modulo Arithmetic.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import ZArith.
 
@@ -29,7 +29,7 @@ Require Import natZ.
 Require Import exp.
 Require Import divides.
 
-(* (Mod a b n) means (a = b (mod n)) *)
+(** (Mod a b n) means (a = b (mod n)) *)
 
 Definition Mod (a b : Z) (n : nat) :=
   exists q : Z, a = (b + Z_of_nat n * q)%Z.
@@ -390,7 +390,7 @@ Proof.
    assumption.
 Qed.
 
-(* ZMod, same as Mod but only uses Z. *)
+(** ZMod, same as Mod but only uses Z. *)
 
 Definition ZMod (a b n : Z) := exists q : Z, a = (b + n * q)%Z.
 

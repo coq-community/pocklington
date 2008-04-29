@@ -15,12 +15,12 @@
 
 
 (**
- * prime.
- * The primality predicate.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   prime.
+   The primality predicate.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import ZArith.
 Require Import Wf_nat.
@@ -32,10 +32,13 @@ Require Import divides.
 Require Import modulo.
 Require Import list.
 
+
+(** * Primality on nat *)
+
 Definition Prime (n : nat) : Prop :=
   n > 1 /\ (forall q : nat, Divides q n -> q = 1 \/ q = n).
 
-(* Prime with bounded all quantifier. *)
+(** Prime with bounded all quantifier. *)
 
 Definition bPrime (n : nat) :=
   n > 1 /\ (forall q : nat, q < S n -> Divides q n -> q = 1 \/ q = n).
@@ -63,7 +66,7 @@ Proof.
    assumption.
 Qed.
 
-(* Prime is decidable. *)
+(** Prime is decidable. *)
 
 Lemma bprimedec : forall n : nat, bPrime n \/ ~ bPrime n.
 Proof.
@@ -87,7 +90,7 @@ Proof.
    right. intro. apply H1. apply (H H2).
 Qed.
 
-(* Non-primes n>1 have non-trivial divisors. *)
+(** Non-primes n>1 have non-trivial divisors. *)
 
 Lemma nonprime_witness :
  forall n : nat,
@@ -144,7 +147,7 @@ Proof.
    assumption.
 Qed.
 
-(* Non-primes n>1 have prime-divisors. *)
+(** Non-primes n>1 have prime-divisors. *)
 
 Theorem nonprime_primewitness :
  forall n : nat,
@@ -179,7 +182,7 @@ Proof.
    assumption. assumption. assumption. assumption. assumption.
 Qed.
 
-(* Prime(n) if all prime divisors > sqrt(n). *)
+(** Prime(n) if all prime divisors > sqrt(n). *)
 
 Theorem primepropdiv :
  forall n : nat,
@@ -206,7 +209,7 @@ Proof.
    apply (H2 n). assumption.
 Qed.
 
-(* Two is a prime. *)
+(** Two is a prime. *)
 
 Lemma prime2 : Prime 2.
 Proof.
@@ -224,7 +227,9 @@ Proof.
    repeat apply gt_n_S. apply gt_Sn_O.
 Qed.
 
-(* ZPrime, just like Prime but uses only Z. *)
+(** * Primality on Z *)
+
+(** ZPrime, just like Prime but uses only Z. *)
 
 Definition ZPrime (n : Z) : Prop :=
   (n > 1)%Z /\ (forall q : Z, (q >= 0)%Z -> ZDivides q n -> q = 1%Z \/ q = n).
@@ -275,7 +280,7 @@ Proof.
    exact zprime2.
 Qed.
 
-(* All numbers in natlist are prime. *)
+(** All numbers in natlist are prime. *)
 
 Definition allPrime : natlist -> Prop := alllist nat Prime.
 

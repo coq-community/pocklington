@@ -15,12 +15,12 @@
 
 
 (**
- * pock.
- * Pocklington's criterion.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   pock.
+   Pocklington's criterion.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import Arith.
 Require Import ZArith.
@@ -38,9 +38,9 @@ Require Import modprime.
 Require Import order.
 
 (**
- * For all numbers q in natlist qlist: 1 is a linear combination
- * of a^(m*qlist/qi) and n modulo n.
- *)
+   For all numbers q in natlist qlist: 1 is a linear combination
+   of a^(m*qlist/qi) and n modulo n.
+*)
 
 Definition allLinCombMod (a : Z) (n m : nat) (qlist : natlist) :=
   alllist nat
@@ -65,8 +65,8 @@ Proof.
 Qed.
 
 (**
- * Pocklington's theorem (finally).
- * Proves Pocklington for natural numbers.
+   Pocklington's theorem (finally).
+   Proves Pocklington for natural numbers.
  *)
 
 Theorem pocklington :
@@ -151,12 +151,12 @@ Qed.
 
 
 (**
- * Below is an attempt to restate Pocklington's theorem
- * using only numbers from Z. This will make concrete
- * computations faster.
+   Below is an attempt to restate Pocklington's theorem
+   using only numbers from Z. This will make concrete
+   computations faster.
  *)
 
-(* ZallLinCombMod is equivalent to AllLinCombMod but uses Z. *)
+(** ZallLinCombMod is equivalent to AllLinCombMod but uses Z. *)
 
 Definition ZallLinCombMod (a n m N : Z) (qlist : Zlist) :=
   alllist Z
@@ -222,7 +222,7 @@ Proof.
    apply Zle_ge. assumption.
 Qed.
 
-(* Zpocklington is equivalent to pocklington but only uses numbers in Z. *)
+(** Zpocklington is equivalent to pocklington but only uses numbers in Z. *)
 
 Theorem Zpocklington :
  forall (n q m a : Z) (qlist : Zlist),

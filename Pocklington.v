@@ -15,11 +15,10 @@
 
 
 (**
- * Pocklington's Criterion.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   Pocklington's Criterion.
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Export Arith.
 Require Export ZArith.

@@ -15,12 +15,12 @@
 
 
 (**
- * lemmas.
- * Some nice lemmas, mostly about le, lt, and mult.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   lemmas.
+   Some nice lemmas, mostly about le, lt, and mult.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import ZArith.
 Require Import EqNat.

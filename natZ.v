@@ -15,13 +15,13 @@
 
 
 (**
- * natZ.
- * Some lemmas about inject_nat, absolu and the relation between
- * Z and nat in general.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   natZ.
+   Some lemmas about inject_nat, absolu and the relation between
+   Z and nat in general.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import ZArith.
 Require Import EqNat.

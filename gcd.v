@@ -15,11 +15,11 @@
 
 
 (**
- * gcd.
- * Greatest common divisor.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
+   gcd.
+   Greatest common divisor.
+   
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
  *)
 
 Require Import ZArith.
@@ -30,7 +30,7 @@ Require Import natZ.
 Require Import divides.
 Require Import modulo.
 
-(* Linear combinations. *)
+(** * Linear combinations. *)
 
 Definition LinComb (c x y : Z) :=
   exists a : Z, (exists b : Z, c = (x * a + y * b)%Z).
@@ -60,7 +60,7 @@ Proof.
    apply zmodmod. assumption.
 Qed.
 
-(* Greatest common divisor. *)
+(** * Greatest common divisor. *)
 
 Definition common_div (x y : Z) (d : nat) :=
   Divides d (Zabs_nat x) /\ Divides d (Zabs_nat y).
@@ -147,7 +147,7 @@ Proof.
    intros. apply gcd_sym. apply gcd_0_l. assumption.
 Qed.
 
-(* Euclid's theorem. *)
+(** * Euclid's theorem. *)
 
 Lemma euclid_gcd1 :
  forall (d : nat) (x y q r : Z), gcd x y d -> x = (q * y + r)%Z -> gcd r y d.
@@ -190,7 +190,7 @@ Proof.
    assumption.
 Qed.
 
-(* Greatest common divisor can be written as linear combination. *)
+(** * Greatest common divisor can be written as linear combination. *)
 
 Lemma gcd_lincomb_nat :
  forall x y d : nat,

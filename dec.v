@@ -15,18 +15,18 @@
 
 
 (**
- * dec.
- * Some utilities for proving decidability of predicates.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   dec.
+   Some utilities for proving decidability of predicates.
+
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import Arith.
 Require Import ZArith.
 Require Import EqNat.
 
-(* Checks that all nats before n are P *)
+(** Checks that all nats before n are P *)
 
 Fixpoint allbefore (P : nat -> Prop) (n : nat) {struct n} : Prop :=
   match n with
@@ -34,7 +34,7 @@ Fixpoint allbefore (P : nat -> Prop) (n : nat) {struct n} : Prop :=
   | S x => allbefore P x /\ P x
   end.
 
-(* Checks that some nat before n is P *)
+(** Checks that some nat before n is P *)
 
 Fixpoint exbefore (P : nat -> Prop) (n : nat) {struct n} : Prop :=
   match n with
@@ -155,7 +155,7 @@ Proof.
 Qed.
 
 
-(* some decidable relations on nat *)
+(** some decidable relations on nat *)
 
 Lemma eqdec : forall n m : nat, n = m \/ n <> m.
 Proof.
@@ -204,14 +204,14 @@ Proof.
    unfold gt in |- *. intros. apply ltdec.
 Qed.
 
-(* relations on Z *)
+(** relations on Z *)
 
 Lemma zeqdec : forall x y : Z, x = y \/ x <> y.
 Proof.
    intros. elim (dec_eq x y). left. assumption. right. assumption.
 Qed.
 
-(* the connectives preserve decidability *)
+(** the connectives preserve decidability *)
 
 Lemma notdec : forall P : Prop, P \/ ~ P -> ~ P \/ ~ ~ P.
 Proof.
@@ -258,7 +258,7 @@ Proof.
    apply impdec. assumption. assumption.
 Qed.
 
-(* bounded quantifiers preserve decidability *)
+(** bounded quantifiers preserve decidability *)
 
 Theorem alldec :
  forall (P : nat -> Prop) (N : nat),
@@ -306,7 +306,7 @@ Proof.
    assumption.
 Qed.
 
-(* De Morgan's law holds for decidable P if the quantifiers are bounded *)
+(** De Morgan's law holds for decidable P if the quantifiers are bounded *)
 
 Theorem decDeMorgan :
  forall (N : nat) (P : nat -> Prop),
@@ -358,7 +358,7 @@ Proof.
 Qed.
 
 
-(* Some nice boolean stuff... *)
+(** Some nice boolean stuff... *)
 
 Definition istrue (b : bool) := if b then True else False.
 

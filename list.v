@@ -15,12 +15,12 @@
 
 
 (**
- * list.
- * Polymorphic lists with some operations.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   list.
+   Polymorphic lists with some operations.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import Arith.
 Require Import ZArith.
@@ -29,13 +29,13 @@ Require Import EqNat.
 Require Import dec.
 Require Import natZ.
 
-(* Poly lists. *)
+(** * Polymorphic lists *)
 
 Inductive list (A : Set) : Set :=
   | Nil : list A
   | Cons : A -> list A -> list A.
 
-(* Length of a list *)
+(** Length of a list *)
 
 Fixpoint length (A : Set) (l : list A) {struct l} : nat :=
   match l with
@@ -62,7 +62,7 @@ Proof.
    reflexivity. assumption.
 Qed.
 
-(* Map a function over a list *)
+(** Map a function over a list *)
 
 Fixpoint map (A B : Set) (f : A -> B) (l : list A) {struct l} : 
  list B :=
@@ -82,7 +82,7 @@ Proof.
    simpl in |- *. intros. rewrite H. reflexivity.
 Qed.
 
-(* Checks that all members of a list are P *)
+(** Checks that all members of a list are P *)
 
 Fixpoint alllist (A : Set) (P : A -> Prop) (qlist : list A) {struct qlist} :
  Prop :=
@@ -105,7 +105,7 @@ Proof.
    assumption.
 Qed.
 
-(* Checks that some member of a list is P *)
+(** Checks that some member of a list is P *)
 
 Fixpoint exlist (A : Set) (P : A -> Prop) (qlist : list A) {struct qlist} :
  Prop :=
@@ -130,7 +130,7 @@ Proof.
    assumption.
 Qed.
 
-(* Membership *)
+(** Membership *)
 
 Definition inlist (A : Set) (a : A) := exlist A (fun b : A => a = b).
 
@@ -167,7 +167,7 @@ Proof.
    apply exlist_dec. exact (H x).
 Qed.
 
-(* alllist and exlist behave nicely *)
+(** alllist and exlist behave nicely *)
 
 Theorem alllist_ok :
  forall (A : Set) (P : A -> Prop) (qlist : list A),
@@ -213,13 +213,11 @@ Proof.
    intro. right. apply IH. split with q1. split. assumption. assumption.
 Qed.
 
-(**
- * Lists of natural numbers.
- *)
+(** * Lists of natural numbers. *)
 
 Definition natlist := list nat.
 
-(* Multiply all elements of a natlist *)
+(** Multiply all elements of a natlist *)
 
 Fixpoint product (qlist : natlist) : nat :=
   match qlist with
@@ -227,7 +225,7 @@ Fixpoint product (qlist : natlist) : nat :=
   | Cons m l => m * product l
   end.
 
-(* Drop the first occurance of q from qlist *)
+(** Drop the first occurance of q from qlist *)
 
 Fixpoint drop (q : nat) (qlist : natlist) {struct qlist} : natlist :=
   match qlist with
@@ -235,7 +233,7 @@ Fixpoint drop (q : nat) (qlist : natlist) {struct qlist} : natlist :=
   | Cons q' l => if beq_nat q q' then l else Cons nat q' (drop q l)
   end.
 
-(* Multiply all elements of qlist, except for (first occurance of) q *)
+(** Multiply all elements of qlist, except for (first occurance of) q *)
 
 Definition multDrop (q : nat) (l : natlist) := product (drop q l).
 
@@ -275,17 +273,15 @@ Proof.
    assumption.
 Qed.
 
-(**
- * Lists of integers.
- *)
+(** * Lists of integers. *)
 
 Definition Zlist := list Z.
 
-(* allPos checks whether all members of a Zlist are non-negative. *)
+(** allPos checks whether all members of a Zlist are non-negative. *)
 
 Definition allPos : Zlist -> Prop := alllist Z (fun x : Z => (x >= 0)%Z).
 
-(* Multiply all elements of a Zlist *)
+(** Multiply all elements of a Zlist *)
 
 Fixpoint zproduct (l : Zlist) : Z :=
   match l with
@@ -314,7 +310,7 @@ Proof.
    rewrite IH. reflexivity.
 Qed.
 
-(* Drop an element from a Zlist *)
+(** Drop an element from a Zlist *)
 
 Fixpoint zdrop (x : Z) (l : Zlist) {struct l} : Zlist :=
   match l with
@@ -497,7 +493,7 @@ Proof.
    assumption. assumption.
 Qed.
 
-(* Multiply all elements except first occurance of x *)
+(** Multiply all elements except first occurance of x *)
 
 Definition zmultDrop (x : Z) (l : Zlist) := zproduct (zdrop x l).
 
@@ -566,7 +562,7 @@ Proof.
    assumption.
 Qed.
 
-(* Multiply all elements in list with a *)
+(** Multiply all elements in list with a *)
 
 Definition mapmult (a : Z) (l : Zlist) := map Z Z (fun x : Z => (a * x)%Z) l.
 
@@ -595,7 +591,7 @@ Proof.
    assumption. assumption. assumption.
 Qed.
 
-(* Lift inject_nat and absolu to natlist and Zlist. *)
+(** Lift inject_nat and absolu to natlist and Zlist. *)
 
 Lemma abs_inj_list :
  forall l : natlist, map _ _ Zabs_nat (map _ _ Z_of_nat l) = l.

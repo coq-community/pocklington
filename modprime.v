@@ -15,12 +15,12 @@
 
 
 (**
- * modprime.
- * Some nice lemmas about div, mult, mod, prime, and gcd. 
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   modprime.
+   Some nice lemmas about div, mult, mod, prime, and gcd. 
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import Arith.
 Require Import ZArith.
@@ -158,11 +158,11 @@ Proof.
 Qed.
 
 (**
- * This lemma simply states that: if a divides b where 0<a<b,
- * then there is a prime factor qi of b such that a divides (b/qi).
- * I.e. If you divide by a non-trivial divisor, then the other
- * divisor contains a prime factor.
- *)
+  This lemma simply states that: if a divides b where 0<a<b,
+  then there is a prime factor qi of b such that a divides (b/qi).
+  I.e. If you divide by a non-trivial divisor, then the other
+  divisor contains a prime factor.
+*)
 
 Lemma techlemma3 :
  forall (qlist : natlist) (a b : nat),

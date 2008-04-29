@@ -15,12 +15,12 @@
 
 
 (**
- * order.
- * The order of elements in the multgroup modulo p.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   order.
+   The order of elements in the multgroup modulo p.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import Arith.
 Require Import ZArith.
@@ -38,7 +38,7 @@ Require Import modulo.
 Require Import modprime.
 Require Import fermat.
 
-(* (Order b q p) means the order of b is q in multgroup(Z_p). *)
+(** (Order b q p) means the order of b is q in multgroup(Z_p). *)
 
 Definition Order (b : Z) (q p : nat) :=
   0 < q /\

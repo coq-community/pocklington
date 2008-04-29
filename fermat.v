@@ -15,11 +15,11 @@
 
 
 (**
- * fermat.
- * Fermat's little theorem.
- *
- * @author Martijn Oostdijk
- * @version $Revision$
+   fermat.
+   Fermat's little theorem.
+   
+   @author Martijn Oostdijk
+   @version $Revision$
  *)
 
 Require Import Arith.
@@ -35,7 +35,7 @@ Require Import prime.
 Require Import modulo.
 Require Import modprime.
 
-(* No double elements modulo p. *)
+(** * No double elements modulo p. *)
 
 Definition nodoubles (p : nat) (l : Zlist) : Prop :=
   forall x : Z,
@@ -79,7 +79,7 @@ Proof.
    assumption.
 Qed.
 
-(* All elements from l1 occur in l2 modulo p. *)
+(** * All elements from l1 occur in l2 modulo p. *)
 
 Definition allex (p : nat) (l0 l1 : Zlist) : Prop :=
   forall x : Z, inlist Z x l0 -> exists y : Z, inlist Z y l1 /\ Mod x y p.
@@ -108,7 +108,7 @@ Proof.
    apply zdrop_inlist_weak with x0. assumption.
 Qed.
 
-(* The list of integers between 1 and n (inclusive) *)
+(** * The list of integers between 1 and n (inclusive) *)
 
 Fixpoint until (n : nat) : Zlist :=
   match n with
@@ -318,7 +318,7 @@ Proof.
    apply lt_n_Sn. elim H. intros. assumption.
 Qed.
 
-(* Permutations modulo p. *)
+(** * Permutations modulo p. *)
 
 Fixpoint permmod (p : nat) (l1 : Zlist) {struct l1} : 
  Zlist -> Prop :=
@@ -669,7 +669,7 @@ Proof.
    assumption.
 Qed.
 
-(* Fermat's Little Theorem. *)
+(** * Fermat's Little Theorem. *)
 
 Theorem flt :
  forall (a : Z) (p : nat), Prime p -> ~ Mod a 0 p -> Mod (Exp a (pred p)) 1 p.

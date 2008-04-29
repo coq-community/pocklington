@@ -15,12 +15,12 @@
 
 
 (**
- * divides.
- * The division predicate.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   divides.
+   The division predicate.
+ 
+   @author Olga Caprotti and Martijn Oostdijk
+   @version $Revision$
+*)
 
 Require Import ZArith.
 Require Import Wf_nat.
@@ -29,6 +29,8 @@ Require Import lemmas.
 Require Import natZ.
 Require Import dec.
 Require Import exp.
+
+(** * Division on nat *)
 
 Definition Divides (n m : nat) : Prop := exists q : nat, m = n * q.
 
@@ -92,7 +94,7 @@ Proof.
    intros. apply div_le1. assumption.
 Qed.
 
-(* Divides with bounded ex quantifier. *)
+(** Divides with bounded ex quantifier. *)
 
 Definition bDivides (d n : nat) :=
   n = 0 \/ (exists q : nat, q < S n /\ n = d * q).
@@ -143,7 +145,7 @@ Proof.
    assumption.
 Qed.
 
-(* Divides is decidable. *)
+(** Divides is decidable. *)
 
 Lemma bdivdec : forall n d : nat, bDivides d n \/ ~ bDivides d n.
 Proof.
@@ -162,7 +164,7 @@ Proof.
    right. intro. apply H1. apply (H H2).
 Qed.
 
-(* If d|n, then either d<sqrt(n) or the other divisor x<sqrt(n). *)
+(** If d|n, then either d<sqrt(n) or the other divisor x<sqrt(n). *)
 
 Theorem sqrdivbound :
  forall n d : nat,
@@ -197,8 +199,8 @@ Qed.
 
 
 (**
- * Division with remainder.
- *)
+   Division with remainder.
+*)
 
 Theorem div_rem :
  forall d n : nat,
@@ -359,7 +361,7 @@ Proof.
    simpl in |- *. reflexivity.
 Qed.
 
-(* Compatibility results. *)
+(** Compatibility results. *)
 
 Lemma div_plus_compat :
  forall a b c : nat, Divides a b -> Divides a c -> Divides a (b + c).
@@ -435,7 +437,7 @@ Proof.
    reflexivity.
 Qed.
 
-(* Division on Z. *)
+(** * Division on Z. *)
 
 Definition ZDivides (x y : Z) : Prop := exists q : Z, y = (x * q)%Z.
 

@@ -15,19 +15,19 @@
 
 
 (**
- * exp.
- * Exponential function on Z.
- *
- * @author Olga Caprotti and Martijn Oostdijk
- * @version $Revision$
- *)
+   exp.
+   Exponential function on Z.
+   
+   @author Olga Caprotti and Martijn Oostdijk 
+   @version $Revision$
+*)
 
 Require Import ZArith.
 
 Require Import lemmas.
 Require Import natZ.
 
-(* Exponential function with exponent in nat. *)
+(** * Exponential function with exponent in nat. *)
 
 Fixpoint Exp (a : Z) (n : nat) {struct n} : Z :=
   match n with
@@ -96,7 +96,7 @@ Proof.
    assumption. assumption. assumption.
 Qed.
 
-(* Convenience lemma for changing exponent. *)
+(** Convenience lemma for changing exponent. *)
 
 Lemma exp_eq : forall (n m : nat) (a : Z), n = m -> Exp a n = Exp a m.
 Proof.
@@ -108,7 +108,7 @@ Proof.
    intros. simpl in |- *. reflexivity.
 Qed.
 
-(* Exponential function with exponent in Z. *)
+(** * Exponential function with exponent in Z. *)
 
 Definition ZExp (a n : Z) : Z :=
   match n with
@@ -127,7 +127,7 @@ Proof.
    reflexivity.
 Qed.
 
-(* Convenience lemma for changing exponent. *)
+(** Convenience lemma for changing exponent. *)
 
 Lemma zexp_eq : forall x y a : Z, x = y -> ZExp a x = ZExp a y.
 Proof.
