@@ -22,6 +22,8 @@
    @version $Revision$
 *)
 
+Global Set Asymmetric Patterns.
+
 Require Import ZArith.
 Require Import EqNat.
 
