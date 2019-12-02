@@ -45,7 +45,7 @@ Proof.
    right. unfold gcd in |- *. unfold common_div in |- *.
    split. split.
    split with p. simpl in |- *. rewrite <- plus_n_O. apply abs_inj.
-   split with (Zabs_nat a). simpl in |- *. apply plus_n_O.
+   split with (Z.abs_nat a). simpl in |- *. apply plus_n_O.
    intros. elim H1. intros. rewrite abs_inj in H2.
    elim (primediv1p p e).
    intro. rewrite H4. apply le_n.
@@ -134,7 +134,7 @@ Proof.
    intros.
    rewrite <- Zminus_0_l_reverse in H1.
    rewrite abs_mult in H1.
-   elim (primedivmult p (Zabs_nat a) (Zabs_nat b)).
+   elim (primedivmult p (Z.abs_nat a) (Z.abs_nat b)).
    left. elim (moddivmin a 0 p). intros.
    apply H5. rewrite <- Zminus_0_l_reverse. assumption.
    right. elim (moddivmin b 0 p). intros.

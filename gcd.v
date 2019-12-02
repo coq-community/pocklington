@@ -52,7 +52,7 @@ Proof.
 Qed.
 
 Lemma zlincombmodlincombmod :
- forall c x y n : Z, ZLinCombMod c x y n -> LinCombMod c x y (Zabs_nat n).
+ forall c x y n : Z, ZLinCombMod c x y n -> LinCombMod c x y (Z.abs_nat n).
 Proof.
    unfold ZLinCombMod, LinCombMod in |- *.
    intros. elim H. intros a Ha. exists a.
@@ -63,7 +63,7 @@ Qed.
 (** * Greatest common divisor. *)
 
 Definition common_div (x y : Z) (d : nat) :=
-  Divides d (Zabs_nat x) /\ Divides d (Zabs_nat y).
+  Divides d (Z.abs_nat x) /\ Divides d (Z.abs_nat y).
 
 Definition gcd (x y : Z) (d : nat) :=
   common_div x y d /\ (forall e : nat, common_div x y e -> e <= d).
@@ -250,35 +250,35 @@ Proof.
    (* case 0 <= y *)
    intro. rewrite <- (inj_abs_pos x). rewrite <- (inj_abs_pos y).
    apply gcd_lincomb_nat.
-   change (Zabs_nat x > Zabs_nat 0) in |- *.
-   apply gtzgt. apply Zlt_le_weak. apply Zgt_lt. assumption.
-   unfold Zle in |- *. simpl in |- *. discriminate.
+   change (Z.abs_nat x > Z.abs_nat 0) in |- *.
+   apply gtzgt. apply Zlt_le_weak. apply Z.gt_lt. assumption.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
    assumption.
    rewrite inj_abs_pos. rewrite inj_abs_pos. assumption.
-   apply Zle_ge. assumption.
-   apply Zle_ge. apply Zlt_le_weak. apply Zgt_lt. assumption.
-   apply Zle_ge. assumption.
-   apply Zle_ge. apply Zlt_le_weak. apply Zgt_lt. assumption.
+   apply Z.le_ge. assumption.
+   apply Z.le_ge. apply Zlt_le_weak. apply Z.gt_lt. assumption.
+   apply Z.le_ge. assumption.
+   apply Z.le_ge. apply Zlt_le_weak. apply Z.gt_lt. assumption.
 
    (* case y < 0 *)
    intro. rewrite <- (inj_abs_pos x).
    replace y with (- - y)%Z. rewrite <- (inj_abs_neg y).
-   elim (gcd_lincomb_nat (Zabs_nat x) (Zabs_nat y) d).
+   elim (gcd_lincomb_nat (Z.abs_nat x) (Z.abs_nat y) d).
    intro alpha. intros. elim H2. intro beta. intros.
    split with alpha. split with (- beta)%Z.
-   rewrite <- Zopp_mult_distr_r. rewrite (Zmult_comm (- Z_of_nat (Zabs_nat y))).
-   rewrite <- Zopp_mult_distr_r. rewrite Zopp_involutive. rewrite (Zmult_comm beta).
+   rewrite <- Zopp_mult_distr_r. rewrite (Zmult_comm (- Z_of_nat (Z.abs_nat y))).
+   rewrite <- Zopp_mult_distr_r. rewrite Z.opp_involutive. rewrite (Zmult_comm beta).
    assumption.
-   change (Zabs_nat x > Zabs_nat 0) in |- *. apply gtzgt.
-   apply Zlt_le_weak. apply Zgt_lt. assumption.
-   unfold Zle in |- *. simpl in |- *. discriminate.
+   change (Z.abs_nat x > Z.abs_nat 0) in |- *. apply gtzgt.
+   apply Zlt_le_weak. apply Z.gt_lt. assumption.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
    assumption.
    rewrite inj_abs_pos. rewrite inj_abs_neg. apply gcd_opp_r. assumption.
    assumption.
-   apply Zle_ge. apply Zlt_le_weak. apply Zgt_lt. assumption.
+   apply Z.le_ge. apply Zlt_le_weak. apply Z.gt_lt. assumption.
    assumption.
-   apply Zopp_involutive.
-   apply Zle_ge. apply Zlt_le_weak. apply Zgt_lt. assumption.
+   apply Z.opp_involutive.
+   apply Z.le_ge. apply Zlt_le_weak. apply Z.gt_lt. assumption.
 Qed.
 
 Theorem gcd_lincomb :
@@ -293,7 +293,7 @@ Proof.
    (* case 0 < x *)
    intro.
    apply gcd_lincomb_pos.
-   apply Zlt_gt.
+   apply Z.lt_gt.
    assumption.
    assumption.
 

@@ -240,7 +240,7 @@ Proof.
    elim H. intros. split.
    change (Z_of_nat n > Z_of_nat 1)%Z in |- *.
    apply Znat.inj_gt. assumption.
-   intros. elim (H1 (Zabs_nat q)).
+   intros. elim (H1 (Z.abs_nat q)).
    left. rewrite <- (inj_abs_pos q). rewrite H4.
    simpl in |- *. reflexivity. assumption.
    right. rewrite <- (inj_abs_pos q). rewrite H4.
@@ -249,16 +249,16 @@ Proof.
    apply zdivdiv. assumption.
 Qed.
 
-Lemma zprimeprime : forall n : Z, ZPrime n -> Prime (Zabs_nat n).
+Lemma zprimeprime : forall n : Z, ZPrime n -> Prime (Z.abs_nat n).
 Proof.
    unfold ZPrime, Prime in |- *. intros.
    elim H. intros. split.
-   change (Zabs_nat n > Zabs_nat 1) in |- *.
+   change (Z.abs_nat n > Z.abs_nat 1) in |- *.
    apply gtzgt.
-   apply Zle_trans with 1%Z.
-   unfold Zle in |- *. simpl in |- *. discriminate.
-   apply Zlt_le_weak. apply Zgt_lt. assumption.
-   unfold Zle in |- *. simpl in |- *. discriminate.
+   apply Z.le_trans with 1%Z.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
+   apply Zlt_le_weak. apply Z.gt_lt. assumption.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
    assumption.
    intros. elim (H1 (Z_of_nat q)).
    left. rewrite <- (abs_inj q). rewrite H3.
@@ -293,9 +293,9 @@ Proof.
    simpl in |- *. intro. assumption.
    simpl in |- *. intros h t IH H.
    elim H. intros. elim H0. intros.
-   split. apply Zle_ge. apply Zle_trans with 1%Z.
-   unfold Zle in |- *. simpl in |- *. discriminate.
-   apply Zlt_le_weak. apply Zgt_lt. assumption.
+   split. apply Z.le_ge. apply Z.le_trans with 1%Z.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
+   apply Zlt_le_weak. apply Z.gt_lt. assumption.
    apply IH. assumption.
 Qed.
 
@@ -311,7 +311,7 @@ Proof.
 Qed.
 
 Lemma allzprimeallprime :
- forall l : Zlist, allZPrime l -> allPrime (map _ _ Zabs_nat l).
+ forall l : Zlist, allZPrime l -> allPrime (map _ _ Z.abs_nat l).
 Proof.
    unfold allPrime, allZPrime in |- *.
    simple induction l.

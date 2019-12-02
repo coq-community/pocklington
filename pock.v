@@ -183,7 +183,7 @@ Lemma alllincombzalllincomb :
  (0 <= m)%Z ->
  allPos qlist ->
  ZallLinCombMod a n m n qlist ->
- allLinCombMod a (Zabs_nat n) (Zabs_nat m) (map _ _ Zabs_nat qlist).
+ allLinCombMod a (Z.abs_nat n) (Z.abs_nat m) (map _ _ Z.abs_nat qlist).
 Proof.
    intros.
    unfold ZallLinCombMod in H.
@@ -196,15 +196,15 @@ Proof.
     (alllist_ok nat
        (fun q0 : nat =>
         LinCombMod 1
-          (Exp a (Zabs_nat m * multDrop q0 (map _ _ Zabs_nat qlist)) - 1)
-          (Z_of_nat (Zabs_nat n)) (Zabs_nat n)) (map _ _ Zabs_nat qlist)).
+          (Exp a (Z.abs_nat m * multDrop q0 (map _ _ Z.abs_nat qlist)) - 1)
+          (Z_of_nat (Z.abs_nat n)) (Z.abs_nat n)) (map _ _ Z.abs_nat qlist)).
    intros.
    apply H6. intros.
    rewrite <- inj_zexp.
    rewrite Znat.inj_mult.
    rewrite inj_abs_pos.
    rewrite inj_abs_pos.
-   replace m with (Z_of_nat (Zabs_nat m)).
+   replace m with (Z_of_nat (Z.abs_nat m)).
    rewrite <- Znat.inj_mult.
    apply zlincombmodlincombmod.
    rewrite Znat.inj_mult. rewrite inj_abs_pos.
@@ -215,11 +215,11 @@ Proof.
    apply inlist_inj_abs_pos_list.
    assumption. assumption.
    assumption.
-   apply Zle_ge. assumption.
+   apply Z.le_ge. assumption.
    apply inj_abs_pos.
-   apply Zle_ge. assumption.
-   apply Zle_ge. assumption.
-   apply Zle_ge. assumption.
+   apply Z.le_ge. assumption.
+   apply Z.le_ge. assumption.
+   apply Z.le_ge. assumption.
 Qed.
 
 (** Zpocklington is equivalent to pocklington but only uses numbers in Z. *)
@@ -238,17 +238,17 @@ Proof.
    intros. cut (0 <= n)%Z. intros.
    rewrite <- (inj_abs_pos n). apply primezprime.
    apply
-    (pocklington (Zabs_nat n) (Zabs_nat q) (Zabs_nat m) a
-       (map _ _ Zabs_nat qlist)).
-   change (Zabs_nat n > Zabs_nat 1) in |- *. apply gtzgt. assumption.
-   unfold Zle in |- *. simpl in |- *. discriminate.
+    (pocklington (Z.abs_nat n) (Z.abs_nat q) (Z.abs_nat m) a
+       (map _ _ Z.abs_nat qlist)).
+   change (Z.abs_nat n > Z.abs_nat 1) in |- *. apply gtzgt. assumption.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
    assumption.
    rewrite H2. rewrite abs_plus_pos. rewrite abs_mult. rewrite plus_comm.
    simpl in |- *. reflexivity.
    apply isnat_mult.
    assumption.
    assumption.
-   unfold Zle in |- *. simpl in |- *. discriminate.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
    rewrite H3.
    apply zproductproduct.
    apply allzprimeallprime. assumption.
@@ -257,24 +257,24 @@ Proof.
    rewrite abs_pred_pos.
    rewrite inj_abs_pos.
    apply mod_refl.
-   apply Zle_ge.
+   apply Z.le_ge.
    unfold Zminus in |- *.
    simpl in |- *.
    change (0 <= 0 + n + -1)%Z in |- *.
    rewrite (Zplus_assoc_reverse 0).
    rewrite Zplus_comm.
    apply (Zlt_left 0 n).
-   apply Zlt_trans with 1%Z.
-   unfold Zlt in |- *.
+   apply Z.lt_trans with 1%Z.
+   unfold Z.lt in |- *.
    simpl in |- *.
    reflexivity.
-   apply Zgt_lt.
+   apply Z.gt_lt.
    assumption.
-   apply Zlt_trans with 1%Z.
-   unfold Zlt in |- *.
+   apply Z.lt_trans with 1%Z.
+   unfold Z.lt in |- *.
    simpl in |- *.
    reflexivity.
-   apply Zgt_lt.
+   apply Z.gt_lt.
    assumption.
    apply zmodmod.
    assumption.
@@ -291,8 +291,8 @@ Proof.
    assumption.
    assumption.
    assumption.
-   apply Zle_ge. assumption.
-   apply Zle_trans with 1%Z.
-   unfold Zle in |- *. simpl in |- *. discriminate.
-   apply Zlt_le_weak. apply Zgt_lt. assumption.
+   apply Z.le_ge. assumption.
+   apply Z.le_trans with 1%Z.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
+   apply Zlt_le_weak. apply Z.gt_lt. assumption.
 Qed.
