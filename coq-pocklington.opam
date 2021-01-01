@@ -1,0 +1,36 @@
+# This file was generated from `meta.yml`, please do not edit manually.
+# Follow the instructions on https://github.com/coq-community/templates to regenerate.
+
+opam-version: "2.0"
+maintainer: "palmskog@gmail.com"
+version: "dev"
+
+homepage: "https://github.com/coq-community/pocklington"
+dev-repo: "git+https://github.com/coq-community/pocklington.git"
+bug-reports: "https://github.com/coq-community/pocklington/issues"
+license: "LGPL-2.1-or-later"
+
+synopsis: "Pocklington's criterion in Coq"
+description: """
+Coq formalization of Pocklington's criterion for checking primality for
+large natural numbers. Includes a formal proof of Fermat's little theorem."""
+
+build: ["dune" "build" "-p" name "-j" jobs]
+depends: [
+  "dune" {>= "2.5"}
+  "coq" {(>= "8.7" & < "8.14~") | (= "dev")}
+]
+
+tags: [
+  "category:Mathematics/Arithmetic and Number Theory/Number Theory"
+  "keyword:pocklington"
+  "keyword:number theory"
+  "keyword:prime numbers"
+  "keyword:primality"
+  "keyword:fermat's little theorem"
+  "logpath:Pocklington"
+]
+authors: [
+  "Olga Caprotti"
+  "Martijn Oostdijk"
+]

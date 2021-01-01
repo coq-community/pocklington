@@ -213,7 +213,7 @@ Proof.
 Qed.
 
 Lemma moddivmin :
- forall (a b : Z) (n : nat), Mod a b n <-> Divides n (Zabs_nat (a - b)).
+ forall (a b : Z) (n : nat), Mod a b n <-> Divides n (Z.abs_nat (a - b)).
 Proof.
    unfold Mod, Divides in |- *. split.
    intros.
@@ -227,7 +227,7 @@ Proof.
    rewrite (Zplus_comm (- b) b).
    rewrite Zplus_opp_r.
    rewrite <- Zplus_0_r_reverse.
-   split with (Zabs_nat x).
+   split with (Z.abs_nat x).
    pattern n at 2 in |- *.
    rewrite <- (abs_inj n).
    apply abs_mult.
@@ -243,7 +243,7 @@ Proof.
    rewrite Zplus_assoc.
    rewrite Zplus_opp_l.
    simpl in |- *. reflexivity.
-   apply Zle_ge.
+   apply Z.le_ge.
    replace 0%Z with (b - b)%Z. unfold Zminus in |- *.
    apply Zplus_le_compat_r. assumption.
    unfold Zminus in |- *.
@@ -255,7 +255,7 @@ Proof.
    rewrite mult_comm.
    rewrite <- H0.
    rewrite inj_abs_neg.
-   rewrite Zopp_involutive.
+   rewrite Z.opp_involutive.
    unfold Zminus in |- *.
    rewrite (Zplus_comm a).
    rewrite Zplus_assoc.
@@ -271,7 +271,7 @@ Lemma moddec : forall (a b : Z) (n : nat), Mod a b n \/ ~ Mod a b n.
 Proof.
    intros.
    elim (moddivmin a b n). intros.
-   elim (divdec (Zabs_nat (a - b)) n).
+   elim (divdec (Z.abs_nat (a - b)) n).
    left. apply H0. assumption.
    right. intro. elim H1. apply H. assumption.
 Qed.
@@ -319,11 +319,11 @@ Proof.
    elim (moddivmin x 0 n).
    rewrite <- Zminus_0_l_reverse.
    intros.
-   elim (le_not_lt n (Zabs_nat x)).
+   elim (le_not_lt n (Z.abs_nat x)).
    apply div_le.
-   change (Zabs_nat 0 < Zabs_nat x) in |- *.
+   change (Z.abs_nat 0 < Z.abs_nat x) in |- *.
    apply ltzlt.
-   unfold Zle in |- *.
+   unfold Z.le in |- *.
    simpl in |- *.
    discriminate.
    apply Zlt_le_weak.
@@ -359,13 +359,13 @@ Proof.
    rewrite (Zplus_comm (Z_of_nat p)).
    rewrite (Zplus_comm (Z_of_nat p)). simpl in |- *.
    apply Zlt_le_weak.
-   apply Zle_lt_trans with (y + Z_of_nat p * q)%Z.
+   apply Z.le_lt_trans with (y + Z_of_nat p * q)%Z.
    apply Zplus_le_compat_l. pattern (Z_of_nat p) at 1 in |- *. 
    rewrite <- Zmult_1_l with (Z_of_nat p).
    rewrite (Zmult_comm 1). apply Zle_mult_l.
    change (Z_of_nat 0 < Z_of_nat p)%Z in |- *.
    apply Znat.inj_lt. assumption.
-   change (Zsucc 0 <= q)%Z in |- *. apply Zlt_le_succ. assumption.
+   change (Z.succ 0 <= q)%Z in |- *. apply Zlt_le_succ. assumption.
    assumption.
 
    (* 0=q *)
@@ -376,7 +376,7 @@ Proof.
 
    (* q<0 *)
    intro. elim (Zlt_not_le 0 (y + Z_of_nat p * q)).
-   assumption. apply Zle_trans with (y + Z_of_nat p * -1)%Z.
+   assumption. apply Z.le_trans with (y + Z_of_nat p * -1)%Z.
    apply Zplus_le_compat_l. apply Zle_mult_l.
    change (Z_of_nat 0 < Z_of_nat p)%Z in |- *. apply Znat.inj_lt.
    assumption. apply Zlt_succ_le. simpl in |- *. assumption.
@@ -495,7 +495,7 @@ Proof.
    intros. apply zmod_mult_compat. assumption. assumption.
 Qed.
 
-Lemma zmodmod : forall a b n : Z, ZMod a b n -> Mod a b (Zabs_nat n).
+Lemma zmodmod : forall a b n : Z, ZMod a b n -> Mod a b (Z.abs_nat n).
 Proof.
    unfold ZMod, Mod in |- *.
    intros. elim H. intros.
@@ -503,10 +503,10 @@ Proof.
    elim (Zle_or_lt 0 n).
    intro. rewrite inj_abs_pos.
    split with x. reflexivity.
-   apply Zle_ge. assumption.
+   apply Z.le_ge. assumption.
    intro. rewrite inj_abs_neg.
    split with (- x)%Z. rewrite Zopp_mult_distr_l_reverse.
-   rewrite Zopp_mult_distr_r. rewrite Zopp_involutive.
+   rewrite Zopp_mult_distr_r. rewrite Z.opp_involutive.
    reflexivity.
    assumption.
 Qed.
@@ -519,13 +519,13 @@ Proof.
    reflexivity.
 Qed.
 
-Lemma absmodzmod : forall a b n : Z, Mod a b (Zabs_nat n) -> ZMod a b n.
+Lemma absmodzmod : forall a b n : Z, Mod a b (Z.abs_nat n) -> ZMod a b n.
 Proof.
    intros.
    elim H. intros q Hq. 
    elim Zle_or_lt with 0%Z n.
    intro. split with q. rewrite inj_abs_pos in Hq.
-   assumption. apply Zle_ge. assumption.
+   assumption. apply Z.le_ge. assumption.
    intros. split with (- q)%Z. rewrite inj_abs_neg in Hq.
    rewrite Zmult_comm. rewrite Zopp_mult_distr_l_reverse.
    rewrite Zopp_mult_distr_l_reverse in Hq. rewrite Zmult_comm.
@@ -551,16 +551,16 @@ Proof.
    intros. rewrite <- (inj_abs_pos n).
    apply modzmod. rewrite expzexp.
    apply moda0_exp_compat.
-   change (Zabs_nat n > Zabs_nat 0) in |- *. apply gtzgt.
-   apply Zlt_le_weak. apply Zgt_lt. assumption.
+   change (Z.abs_nat n > Z.abs_nat 0) in |- *. apply gtzgt.
+   apply Zlt_le_weak. apply Z.gt_lt. assumption.
    apply Zeq_le. reflexivity.
    assumption.
    apply zmodmod. assumption.
-   change (Zabs_nat m > Zabs_nat 0) in |- *. apply gtzgt.
-   apply Zlt_le_weak. apply Zgt_lt. assumption.
+   change (Z.abs_nat m > Z.abs_nat 0) in |- *. apply gtzgt.
+   apply Zlt_le_weak. apply Z.gt_lt. assumption.
    apply Zeq_le. reflexivity.
    assumption.
-   apply Zle_ge. apply Zlt_le_weak. apply Zgt_lt. assumption.
+   apply Z.le_ge. apply Zlt_le_weak. apply Z.gt_lt. assumption.
 Qed.
 
 Lemma zmod_opp_compat : forall a b n : Z, ZMod a b n -> ZMod (- a) (- b) n.
@@ -641,12 +641,12 @@ Qed.
 Lemma zmod_0not1 : forall n : Z, (n > 1)%Z -> ~ ZMod 0 1 n.
 Proof.
    intros. intro.
-   elim (mod_0not1 (Zabs_nat n)).
-   change (Zabs_nat n > Zabs_nat 1) in |- *. apply gtzgt.
-   apply Zlt_le_weak. apply Zlt_trans with 1%Z.
-   unfold Zlt in |- *. simpl in |- *. reflexivity.
-   apply Zgt_lt. assumption.
-   unfold Zle in |- *. simpl in |- *. discriminate.
+   elim (mod_0not1 (Z.abs_nat n)).
+   change (Z.abs_nat n > Z.abs_nat 1) in |- *. apply gtzgt.
+   apply Zlt_le_weak. apply Z.lt_trans with 1%Z.
+   unfold Z.lt in |- *. simpl in |- *. reflexivity.
+   apply Z.gt_lt. assumption.
+   unfold Z.le in |- *. simpl in |- *. discriminate.
    assumption.
    apply zmodmod. assumption.
 Qed.
@@ -657,10 +657,10 @@ Proof.
    intro.
    elim H.
    intros.
-   elim (mod_repr_non_0 (Zabs_nat n) x).
+   elim (mod_repr_non_0 (Z.abs_nat n) x).
    split.
    assumption. rewrite inj_abs_pos.
-   assumption. apply Zle_ge. apply Zle_trans with x.
+   assumption. apply Z.le_ge. apply Z.le_trans with x.
    apply Zlt_le_weak. assumption.
    apply Zlt_le_weak. assumption.
    apply zmodmod. assumption.

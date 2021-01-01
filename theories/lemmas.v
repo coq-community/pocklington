@@ -444,16 +444,16 @@ Qed.
 Lemma Zopp_lt_gt_0 : forall x : Z, (x < 0)%Z -> (- x > 0)%Z.
 Proof.
    simple induction x.
-   intro. unfold Zlt in H. simpl in H. discriminate H.
-   intros. unfold Zlt in H. simpl in H. discriminate H.
-   intros. simpl in |- *. unfold Zgt in |- *. simpl in |- *. reflexivity.
+   intro. unfold Z.lt in H. simpl in H. discriminate H.
+   intros. unfold Z.lt in H. simpl in H. discriminate H.
+   intros. simpl in |- *. unfold Z.gt in |- *. simpl in |- *. reflexivity.
 Qed.
 
 Lemma Zlt_neq : forall x y : Z, (x < y)%Z -> x <> y.
 Proof.
    intros. intro.
    rewrite H0 in H.
-   elim (Zlt_irrefl y).
+   elim (Z.lt_irrefl y).
    assumption.
 Qed.
 
@@ -461,8 +461,8 @@ Lemma Zgt_neq : forall x y : Z, (x > y)%Z -> x <> y.
 Proof.
    intros. intro.
    rewrite H0 in H.
-   elim (Zlt_irrefl y).
-   apply Zgt_lt. assumption.
+   elim (Z.lt_irrefl y).
+   apply Z.gt_lt. assumption.
 Qed.
 
 Lemma S_inj : forall n m : nat, S n = S m -> n = m.
@@ -473,11 +473,11 @@ Lemma Zlt_mult_l :
  forall p q r : Z, (0 < r)%Z -> (p < q)%Z -> (r * p < r * q)%Z.
 Proof.
    simple induction r.
-   intros. elim (Zlt_irrefl 0). assumption.
-   intros. unfold Zlt in |- *.
+   intros. elim (Z.lt_irrefl 0). assumption.
+   intros. unfold Z.lt in |- *.
    rewrite (Zcompare_mult_compat p0 p q).
    assumption.
-   intros. unfold Zlt in H. simpl in H. discriminate H.
+   intros. unfold Z.lt in H. simpl in H. discriminate H.
 Qed.
 
 Lemma Zle_mult_l :
@@ -485,8 +485,8 @@ Lemma Zle_mult_l :
 Proof.
    simple induction r.
    intros. simpl in |- *. apply Zeq_le. reflexivity.
-   intros. unfold Zle in |- *.
+   intros. unfold Z.le in |- *.
    rewrite (Zcompare_mult_compat p0 p q).
    assumption.
-   intros. unfold Zlt in H. simpl in H. discriminate H.
+   intros. unfold Z.lt in H. simpl in H. discriminate H.
 Qed.

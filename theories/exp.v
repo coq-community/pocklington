@@ -145,7 +145,7 @@ Proof.
    simpl in |- *. reflexivity.
 Qed.
 
-Lemma expzexp : forall x a : Z, ZExp a x = Exp a (Zabs_nat x).
+Lemma expzexp : forall x a : Z, ZExp a x = Exp a (Z.abs_nat x).
 Proof.
    intros.
    induction  x as [| p| p].
@@ -162,16 +162,16 @@ Proof.
    rewrite expzexp.
    rewrite abs_plus_pos.
    rewrite plus_comm.
-   change (Exp a (S (Zabs_nat n)) = (a * Exp a (Zabs_nat n))%Z) in |- *.
+   change (Exp a (S (Z.abs_nat n)) = (a * Exp a (Z.abs_nat n))%Z) in |- *.
    apply exp_S.
    assumption.
-   unfold Zle in |- *.
+   unfold Z.le in |- *.
    simpl in |- *.
    discriminate.
 Qed.
 
 Lemma zexp_S :
- forall a n : Z, (0 <= n)%Z -> ZExp a (Zsucc n) = (a * ZExp a n)%Z.
+ forall a n : Z, (0 <= n)%Z -> ZExp a (Z.succ n) = (a * ZExp a n)%Z.
 Proof.
    intros.
    change (ZExp a (n + 1) = (a * ZExp a n)%Z) in |- *.

@@ -301,7 +301,7 @@ Proof.
 Qed.
 
 Lemma zproductproduct :
- forall l : Zlist, Zabs_nat (zproduct l) = product (map Z nat Zabs_nat l).
+ forall l : Zlist, Z.abs_nat (zproduct l) = product (map Z nat Z.abs_nat l).
 Proof.
    simple induction l.
    simpl in |- *. reflexivity.
@@ -594,7 +594,7 @@ Qed.
 (** Lift inject_nat and absolu to natlist and Zlist. *)
 
 Lemma abs_inj_list :
- forall l : natlist, map _ _ Zabs_nat (map _ _ Z_of_nat l) = l.
+ forall l : natlist, map _ _ Z.abs_nat (map _ _ Z_of_nat l) = l.
 Proof.
    simple induction l.
    simpl in |- *. reflexivity.
@@ -603,7 +603,7 @@ Proof.
 Qed.
 
 Lemma inj_abs_pos_list :
- forall l : Zlist, allPos l -> map _ _ Z_of_nat (map _ _ Zabs_nat l) = l.
+ forall l : Zlist, allPos l -> map _ _ Z_of_nat (map _ _ Z.abs_nat l) = l.
 Proof.
    simple induction l.
    simpl in |- *. intros. reflexivity.
@@ -614,7 +614,7 @@ Qed.
 
 Lemma inlist_inj_abs_pos_list :
  forall (q : nat) (l : Zlist),
- allPos l -> inlist nat q (map Z nat Zabs_nat l) -> inlist Z (Z_of_nat q) l.
+ allPos l -> inlist nat q (map Z nat Z.abs_nat l) -> inlist Z (Z_of_nat q) l.
 Proof.
    simple induction l.
    unfold inlist in |- *. simpl in |- *. intros. assumption.

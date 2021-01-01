@@ -164,7 +164,7 @@ Proof.
    simple induction n.
    unfold inlist in |- *. simpl in |- *. intros. elim H.
    intros m IH. intros. unfold inlist in H. simpl in H. elim H. intros.
-   rewrite H0. unfold Zlt in |- *. simpl in |- *. reflexivity.
+   rewrite H0. unfold Z.lt in |- *. simpl in |- *. reflexivity.
    intros. apply IH. assumption.
 Qed.
 
@@ -174,8 +174,8 @@ Proof.
    simple induction n.
    unfold inlist in |- *. simpl in |- *. intros. elim H.
    intros m IH. intros. unfold inlist in H. simpl in H. elim H. intros.
-   rewrite H0. apply Zle_refl.
-   intros. apply Zle_trans with (Z_of_nat m).
+   rewrite H0. apply Z.le_refl.
+   intros. apply Z.le_trans with (Z_of_nat m).
    apply IH. assumption. apply Znat.inj_le. apply le_S. apply le_n.
 Qed.
 
@@ -301,7 +301,7 @@ Proof.
    split. change (Z_of_nat 0 < Z_of_nat (S m))%Z in |- *. apply Znat.inj_lt.
    apply lt_O_Sn. apply Znat.inj_lt. assumption.
    split. apply until_pos with m. assumption.
-   apply Zle_lt_trans with (Z_of_nat m).
+   apply Z.le_lt_trans with (Z_of_nat m).
    apply until_le_n. assumption.
    apply Znat.inj_lt. apply le_lt_trans with (S m).
    apply le_n_Sn. assumption.
