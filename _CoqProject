@@ -1,16 +1,16 @@
--R . Pocklington
+-R theories Pocklington
 
-Pocklington.v
-dec.v
-divides.v
-exp.v
-fermat.v
-gcd.v
-lemmas.v
-list.v
-modulo.v
-modprime.v
-natZ.v
-order.v
-pock.v
-prime.v
+theories/Pocklington.v
+theories/dec.v
+theories/divides.v
+theories/exp.v
+theories/fermat.v
+theories/gcd.v
+theories/lemmas.v
+theories/list.v
+theories/modulo.v
+theories/modprime.v
+theories/natZ.v
+theories/order.v
+theories/pock.v
+theories/prime.v
