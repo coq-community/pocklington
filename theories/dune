@@ -4,4 +4,4 @@
 (coq.theory
  (name Pocklington)
  (package coq-pocklington)
- (synopsis "Pocklington's criterion in Coq"))
+ (synopsis "Pocklington's criterion for primality in Coq"))

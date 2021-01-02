@@ -27,7 +27,7 @@ Follow the instructions on https://github.com/coq-community/templates to regener
 
 
 
-Coq formalization of Pocklington's criterion for checking primality for
+Coq formalization of Pocklington's criterion for checking primality of
 large natural numbers. Includes a formal proof of Fermat's little theorem.
 
 ## Meta
