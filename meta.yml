@@ -42,6 +42,7 @@ supported_coq_versions:
 
 tested_coq_opam_versions:
 - version: dev
+- version: '8.14'
 - version: '8.13'
 - version: '8.12'
 - version: '8.11'
@@ -51,8 +52,7 @@ tested_coq_opam_versions:
 - version: '8.7'
 
 tested_coq_nix_versions:
-- coq_version: 'master'
-- coq_version: 'v8.14'
+- coq_version: master
 
 namespace: Pocklington
 
